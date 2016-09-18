@@ -1,6 +1,6 @@
 import React, { PropTypes } from 'react';
 import Card from './components/Card';
-
+import { gitJson} from './utiles/helper.js'
 import Bg from './image/home1.jpg';
 
 let cardData = [
@@ -12,11 +12,33 @@ let cardData = [
 ]
 
 class Work extends React.Component {
+  constructor(){
+    super()
+    this.state={
+      json:[],
+      wait:true
+    }
+  }
+  componentDidMount(){
+     gitJson()
+    .then((data)=>{
+      this.setState({
+        json:data.getJson,
+        wait:false   //这里面的到的内容 给this.state 里面的内容 容易拿出去
+
+      })
+     console.log(this.state.json)
+        // let card=json.map((item,i) => <Card {...item} key={i} />  )
+      })
+
+  }
+
   render () {
+    let card=this.state.json.map((item,i) => <Card {...item} key={i} />)
     return(
       <div className="container-fluid">
         <div className="row" style={{marginTop:'20px'}}>
-          {cardData.map( (item,i) => <Card {...item} key={i} /> )}
+          {this.state.wait ?"正在获取数据" :card}
         </div>
       </div>
     )

@@ -27,7 +27,6 @@ class Work extends React.Component {
         wait:false   //这里面的到的内容 给this.state 里面的内容 容易拿出去
 
       })
-     console.log(this.state.json)
         // let card=json.map((item,i) => <Card {...item} key={i} />  )
       })
 

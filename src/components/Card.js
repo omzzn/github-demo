@@ -2,8 +2,8 @@ import React, { PropTypes } from 'react';
 import { hashHistory } from 'react-router';
 class Card extends React.Component {
   handleJump(){
-    let address = this.props.url;
-    hashHistory.push(`/blog/${address}`)
+    let address = this.props.url;   //由调用的给的 每调用一次就不一样
+    hashHistory.push(`/blog/${address}`) //传入路由变量
   }
   render () {
     return(
